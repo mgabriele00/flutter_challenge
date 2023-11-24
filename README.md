@@ -1,16 +1,49 @@
-# flutter_challenge
+**README**
 
-A new Flutter project.
+This repository contains a Flutter app for the Flutter Challenge project.
 
-## Getting Started
+### Steps to Execute the Flutter App:
 
-This project is a starting point for a Flutter application.
+1. Clone the repository using the following command:
+   ```
+   git clone https://github.com/mgabriele00/flutter_challenge.git
+   ```
 
-A few resources to get you started if this is your first Flutter project:
+2. Navigate to the cloned directory:
+   ```
+   cd flutter_challenge
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+3. Get the required dependencies using Flutter's package manager:
+   ```
+   flutter pub get
+   ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4. Ensure you have an emulator set up and running.
+
+5. Run the Flutter app on your emulator:
+   ```
+   flutter run
+   ```
+
+### Running Tests:
+
+To execute the tests, follow these commands:
+
+1. Run integration tests:
+   ```
+   flutter test integration_test
+   ```
+
+2. Run unit tests:
+   ```
+   flutter test
+   ```
+
+### More info:
+
+This app has been developed and tested using Flutter version 3.16.0.
+
+If you encounter any issues feel free to reach me out.
+
+Happy Fluttering! 🚀✨
