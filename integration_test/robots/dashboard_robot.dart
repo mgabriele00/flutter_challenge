@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge/src/bloc/cubits/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'robot.dart';
-
 class DashboardRobot {
   final WidgetTester _tester;
   const DashboardRobot(this._tester);
