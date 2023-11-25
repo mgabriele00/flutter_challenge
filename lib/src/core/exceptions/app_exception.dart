@@ -15,7 +15,7 @@
 ///   CustomException() : super('custom-error-code', 'Custom error message');
 /// }
 /// ```
-class AppException implements Exception {
+sealed class AppException implements Exception {
   final String code;
   final String message;
 
