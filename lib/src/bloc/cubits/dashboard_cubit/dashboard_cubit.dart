@@ -49,7 +49,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   ///
   /// [value] represents the selected breed as a String.
   /// Fetches dog images for the selected breed and updates the state accordingly.
-  void onChangeBreed(String? value) async {
+  Future<void> onChangeBreed(String? value) async {
     if (value != null) {
       try {
         final pictures = await _dogRepository.getDogImages(value);
@@ -80,7 +80,7 @@ class DashboardCubit extends Cubit<DashboardState> {
           picturesToShow: value == 'I do not have preferences'
               ? state.selectedBreedPictures
               : state.selectedBreedPictures
-                  .where((element) => element.contains(value))
+                  .where((element) => element.contains('-$value'))
                   .toList()));
     }
   }
