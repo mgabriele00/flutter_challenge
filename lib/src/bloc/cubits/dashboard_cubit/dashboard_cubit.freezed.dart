@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DashboardState {
-  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isLoadingDogs => throw _privateConstructorUsedError;
   DashboardViewType get viewType => throw _privateConstructorUsedError;
   List<Dog> get dogs => throw _privateConstructorUsedError;
   List<String> get picturesToShow => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $DashboardStateCopyWith<$Res> {
       _$DashboardStateCopyWithImpl<$Res, DashboardState>;
   @useResult
   $Res call(
-      {bool isLoading,
+      {bool isLoadingDogs,
       DashboardViewType viewType,
       List<Dog> dogs,
       List<String> picturesToShow,
@@ -62,7 +62,7 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
+    Object? isLoadingDogs = null,
     Object? viewType = null,
     Object? dogs = null,
     Object? picturesToShow = null,
@@ -73,9 +73,9 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isLoadingDogs: null == isLoadingDogs
+          ? _value.isLoadingDogs
+          : isLoadingDogs // ignore: cast_nullable_to_non_nullable
               as bool,
       viewType: null == viewType
           ? _value.viewType
@@ -122,7 +122,7 @@ abstract class _$$DashboardStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading,
+      {bool isLoadingDogs,
       DashboardViewType viewType,
       List<Dog> dogs,
       List<String> picturesToShow,
@@ -144,7 +144,7 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
+    Object? isLoadingDogs = null,
     Object? viewType = null,
     Object? dogs = null,
     Object? picturesToShow = null,
@@ -155,9 +155,9 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
     Object? error = freezed,
   }) {
     return _then(_$DashboardStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isLoadingDogs: null == isLoadingDogs
+          ? _value.isLoadingDogs
+          : isLoadingDogs // ignore: cast_nullable_to_non_nullable
               as bool,
       viewType: null == viewType
           ? _value.viewType
@@ -199,7 +199,7 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
 
 class _$DashboardStateImpl implements _DashboardState {
   const _$DashboardStateImpl(
-      {this.isLoading = true,
+      {this.isLoadingDogs = true,
       this.viewType = DashboardViewType.empty,
       final List<Dog> dogs = const [],
       final List<String> picturesToShow = const [],
@@ -214,7 +214,7 @@ class _$DashboardStateImpl implements _DashboardState {
 
   @override
   @JsonKey()
-  final bool isLoading;
+  final bool isLoadingDogs;
   @override
   @JsonKey()
   final DashboardViewType viewType;
@@ -258,7 +258,7 @@ class _$DashboardStateImpl implements _DashboardState {
 
   @override
   String toString() {
-    return 'DashboardState(isLoading: $isLoading, viewType: $viewType, dogs: $dogs, picturesToShow: $picturesToShow, selectedBreedPictures: $selectedBreedPictures, isLoadingPictures: $isLoadingPictures, selectedBreed: $selectedBreed, selectedSubBreed: $selectedSubBreed, error: $error)';
+    return 'DashboardState(isLoadingDogs: $isLoadingDogs, viewType: $viewType, dogs: $dogs, picturesToShow: $picturesToShow, selectedBreedPictures: $selectedBreedPictures, isLoadingPictures: $isLoadingPictures, selectedBreed: $selectedBreed, selectedSubBreed: $selectedSubBreed, error: $error)';
   }
 
   @override
@@ -266,8 +266,8 @@ class _$DashboardStateImpl implements _DashboardState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DashboardStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
+            (identical(other.isLoadingDogs, isLoadingDogs) ||
+                other.isLoadingDogs == isLoadingDogs) &&
             (identical(other.viewType, viewType) ||
                 other.viewType == viewType) &&
             const DeepCollectionEquality().equals(other._dogs, _dogs) &&
@@ -287,7 +287,7 @@ class _$DashboardStateImpl implements _DashboardState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      isLoading,
+      isLoadingDogs,
       viewType,
       const DeepCollectionEquality().hash(_dogs),
       const DeepCollectionEquality().hash(_picturesToShow),
@@ -307,7 +307,7 @@ class _$DashboardStateImpl implements _DashboardState {
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {final bool isLoading,
+      {final bool isLoadingDogs,
       final DashboardViewType viewType,
       final List<Dog> dogs,
       final List<String> picturesToShow,
@@ -318,7 +318,7 @@ abstract class _DashboardState implements DashboardState {
       final AppException? error}) = _$DashboardStateImpl;
 
   @override
-  bool get isLoading;
+  bool get isLoadingDogs;
   @override
   DashboardViewType get viewType;
   @override

@@ -20,11 +20,11 @@ class DashboardCubit extends Cubit<DashboardState> {
   /// Returns a [bool] with a boolean value indicating the success of fetching dogs.
   Future<bool> getDogs() async {
     try {
-      if (!state.isLoading) {
-        emit(state.copyWith(isLoading: true, error: null));
+      if (!state.isLoadingDogs) {
+        emit(state.copyWith(isLoadingDogs: true, error: null));
       }
       final dogs = await _dogRepository.getAllDogs();
-      emit(state.copyWith(dogs: dogs, isLoading: false, error: null));
+      emit(state.copyWith(dogs: dogs, isLoadingDogs: false, error: null));
       return true;
     } on DogLoadingFailureException catch (e) {
       emit(state.copyWith(error: e));
@@ -51,6 +51,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   /// Fetches dog images for the selected breed and updates the state accordingly.
   Future<void> onChangeBreed(String? value) async {
     if (value != null) {
+      emit(state.copyWith(isLoadingPictures: true));
       try {
         final pictures = await _dogRepository.getDogImages(value);
         emit(state.copyWith(
@@ -58,12 +59,14 @@ class DashboardCubit extends Cubit<DashboardState> {
             selectedSubBreed: null,
             selectedBreedPictures: pictures,
             picturesToShow: pictures,
+            isLoadingPictures: false,
             error: null));
       } on DogImagesFailureException catch (e) {
         emit(state.copyWith(
           error: e,
           selectedBreed: value,
           selectedSubBreed: null,
+          isLoadingPictures: false
         ));
       }
     }

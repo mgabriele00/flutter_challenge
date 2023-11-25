@@ -16,7 +16,7 @@ enum DashboardViewType {
 ///
 /// Uses freezed package for concise immutable class generation.
 ///
-/// [isLoading]: Indicates whether the Dashboard is in a loading state.
+/// [isLoadingDogs]: Indicates whether the Dashboard is in a loading state.
 /// [viewType]: Represents the current view type of the Dashboard (random, list, or empty).
 /// [dogs]: List of Dog objects to display.
 /// [picturesToShow]: List of URLs for images to show in the UI.
@@ -28,7 +28,7 @@ enum DashboardViewType {
 @freezed
 class DashboardState with _$DashboardState {
   const factory DashboardState({
-    @Default(true) bool isLoading,
+    @Default(true) bool isLoadingDogs,
     @Default(DashboardViewType.empty) DashboardViewType viewType,
     @Default([]) List<Dog> dogs,
     @Default([]) List<String> picturesToShow,

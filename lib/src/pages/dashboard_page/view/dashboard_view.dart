@@ -17,7 +17,7 @@ class DashboardView extends StatelessWidget {
       body: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (context, state) {
           final cubit = context.read<DashboardCubit>();
-          if (state.isLoading) {
+          if (state.isLoadingDogs) {
             return const Center(child: CircularProgressIndicator());
           }
           return SafeArea(
