@@ -6,30 +6,35 @@ import 'robots/robot.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Integration Test: flow to list of images', (tester) async {
-    final robot = Robot(tester);
-    await robot.setup();
+  group('Integration test on typical app flow', () {
+    testWidgets('dashboard to list of images', (tester) async {
 
-    await robot.dashboard.selectList();
-    await robot.dashboard.selectBreed();
-    await robot.dashboard.selectSubBreed();
+      final robot = Robot(tester);
+      await robot.setup();
 
-    await robot.dashboard.search();
+      await robot.dashboard.selectList();
+      await robot.dashboard.selectBreed();
+      await robot.dashboard.selectSubBreed();
 
-    robot.results.ensureImageListView();
-  });
+      await robot.dashboard.search();
 
-  testWidgets('Integration Test: flow to random image', (tester) async {
-    final robot = Robot(tester);
-    await robot.setup();
+      robot.results.ensureImageListView();
 
-    await robot.dashboard.selectRandom();
-    await robot.dashboard.selectBreed();
-    await robot.dashboard.selectSubBreed();
+      await robot.results.scrollAllList();
+    });
 
-    await robot.dashboard.search();
+    testWidgets('dashboard to random image', (tester) async {
+      final robot = Robot(tester);
+      await robot.setup();
 
-    robot.results.ensureRandomImageView();
+      await robot.dashboard.selectRandom();
+      await robot.dashboard.selectBreed();
+      await robot.dashboard.selectSubBreed();
+
+      await robot.dashboard.search();
+
+      robot.results.ensureRandomImageView();
+      robot.results.ensureOneImageDisplayed();
+    });
   });
 }
-
