@@ -21,26 +21,13 @@ class _ImageListState extends State<ImageList> {
   late int itemsToShow;
   final scrollController = ScrollController();
   bool isAllListLoaded = false;
+  double cacheExtent = 0;
 
   @override
   void initState() {
     super.initState();
-    if (widget.images.length < elementsToLoad) {
-      itemsToShow = widget.images.length;
-      setState(() {
-        isAllListLoaded = true;
-      });
-    } else {
-      itemsToShow = elementsToLoad;
-    }
-    scrollController.addListener(() {
-      if ((scrollController.position.pixels ==
-              scrollController.position.maxScrollExtent) ||
-          (scrollController.position.minScrollExtent == 0.0 &&
-              scrollController.position.maxScrollExtent == 0)) {
-        loadMore();
-      }
-    });
+    setInitialItemsToShow();
+    addScrollListener();
   }
 
   @override
@@ -49,25 +36,57 @@ class _ImageListState extends State<ImageList> {
     super.dispose();
   }
 
-  void loadMore() {
-    final offset = widget.images.length - itemsToShow;
-    if (offset < elementsToLoad) {
-      setState(() {
-        itemsToShow = widget.images.length;
-        isAllListLoaded = true;
-      });
+  void setInitialItemsToShow() {
+    if (widget.images.length < elementsToLoad) {
+      itemsToShow = widget.images.length;
+      isAllListLoaded = true;
     } else {
+      itemsToShow = elementsToLoad;
+    }
+  }
+
+  void addScrollListener() {
+    scrollController.addListener(() {
+      if (isAllListLoaded) return;
+      //set cacheExtent to total extension to improve list scrolling performance
+      adjustCacheExtent();
+      //load more items at the end of the list
+      loadMoreItems();
+    });
+  }
+
+  void adjustCacheExtent() {
+    if (cacheExtent < scrollController.position.extentTotal) {
       setState(() {
-        itemsToShow += elementsToLoad;
+        cacheExtent = scrollController.position.extentTotal;
       });
+    }
+  }
+
+  void loadMoreItems() {
+    if ((scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent) ||
+        (scrollController.position.minScrollExtent == 0.0 &&
+            scrollController.position.maxScrollExtent == 0)) {
+      final itemsOffset = widget.images.length - itemsToShow;
+      if (itemsOffset < elementsToLoad) {
+        setState(() {
+          itemsToShow = widget.images.length;
+          isAllListLoaded = true;
+        });
+      } else {
+        setState(() {
+          itemsToShow += elementsToLoad;
+        });
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      cacheExtent: cacheExtent,
       padding: const EdgeInsets.symmetric(horizontal: AppSizes.p8),
-      shrinkWrap: false,
       itemCount: itemsToShow + 1,
       controller: scrollController,
       itemBuilder: (context, index) {
@@ -87,11 +106,7 @@ class _ImageListState extends State<ImageList> {
           )));
         }
         final imageUrl = widget.images[index];
-        return SafeArea(
-          top: false,
-          bottom: index == widget.images.length - 1,
-          child: RoundedNetworkImage(imageUrl: imageUrl),
-        );
+        return RoundedNetworkImage(imageUrl: imageUrl);
       },
       separatorBuilder: (BuildContext context, int index) {
         return gapH8;
