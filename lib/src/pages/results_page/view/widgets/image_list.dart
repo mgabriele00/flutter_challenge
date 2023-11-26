@@ -35,7 +35,7 @@ class _ImageListState extends State<ImageList> {
     }
     scrollController.addListener(() {
       if ((scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) ||
+              scrollController.position.maxScrollExtent) ||
           (scrollController.position.minScrollExtent == 0.0 &&
               scrollController.position.maxScrollExtent == 0)) {
         loadMore();
@@ -68,11 +68,23 @@ class _ImageListState extends State<ImageList> {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: AppSizes.p8),
       shrinkWrap: false,
-      itemCount: itemsToShow + (isAllListLoaded ? 0 : 1),
+      itemCount: itemsToShow + 1,
       controller: scrollController,
       itemBuilder: (context, index) {
         if (index == itemsToShow && !isAllListLoaded) {
-          return const SafeArea(child: LoadingIndicator(topPadding: true));
+          return const SafeArea(
+              child: LoadingIndicator(
+            topPadding: true,
+            key: Key('loadingIndicator'),
+          ));
+        }
+        if (index == itemsToShow && isAllListLoaded) {
+          return const SafeArea(
+              child: Center(
+                  child: Text(
+            'You saw all the puppies 🎉',
+            key: Key('endingText'),
+          )));
         }
         final imageUrl = widget.images[index];
         return SafeArea(
