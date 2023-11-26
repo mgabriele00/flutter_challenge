@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/src/pages/results_page/view/widgets/loading_indicator.dart';
 import 'package:flutter_challenge/src/pages/results_page/view/widgets/rounded_network_image.dart';
 import 'package:flutter_test/flutter_test.dart';
 
