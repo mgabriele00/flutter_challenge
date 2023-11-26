@@ -2,6 +2,15 @@
 
 This repository contains a Flutter app for the Flutter Challenge project.
 
+### Disclaimer
+During debugging, you may notice the appearance of NetworkImageLoadException. This error is related to Image.network present in RoundedNetworkImage, despite the fact that an errorBuilder has been defined within Image.network. I believe the cause gives related to trying to load a broken image from the cache since some images received from the backend are not available but for some reason are cached anyway. This does not seem to affect the execution of the application because the error widget is still shown and execution continues normally without too many rebuilds.
+There are various workarounds that perform worse than the solution adopted (longer loading times or more rebuilds).
+I would like to discuss about this error which seems to me more like a framework level bug.
+More information can also be found on GitHub:
+https://github.com/flutter/flutter/issues/118586#issuecomment-1450474036.
+
+During integration testing to prevent this error from causing the test to fail, FlutterError.onError was redefined to not present this type of exception.
+
 ### Steps to Execute the Flutter App:
 
 1. Clone the repository using the following command:
@@ -30,7 +39,7 @@ This repository contains a Flutter app for the Flutter Challenge project.
 
 To execute the tests, follow these commands:
 
-1. Run integration tests:
+1. Run integration tests (note that you must have a simulator running):
    ```
    flutter test integration_test
    ```
